@@ -1,5 +1,5 @@
 import streamlit as st
-import mindsdb_sample_pinecone as demo ### replace rag_backend with your backend filename
+import mindsdb_sample_pinecone_hyde as demo ### replace rag_backend with your backend filename
 from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 from langchain.embeddings.bedrock import BedrockEmbeddings
