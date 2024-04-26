@@ -4,6 +4,8 @@ from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 from langchain.embeddings.bedrock import BedrockEmbeddings
 import boto3
+from io import BytesIO
+from PIL import Image
 
 st.title("MindsDB Docs Bot")
 #index = demo.loaded_index()
@@ -54,7 +56,7 @@ if prompt := st.chat_input("What is up?"):
         #st.write(response_content)
         #response = f"Echo: {prompt}"
         # Display assistant response in chat message container
-        with st.chat_message("assistant"):
+        with st.chat_message("assistant", avatar="🤖"):
             st.markdown(response_content)
         # Add assistant response to chat history
         st.session_state.messages.append({"role": "assistant", "content": response_content})
