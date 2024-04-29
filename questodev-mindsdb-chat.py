@@ -1,5 +1,5 @@
 import streamlit as st
-import mindsdb_sample_pinecone_hyde as demo ### replace rag_backend with your backend filename
+import mindsdb_sample_pinecone_hyde_togetherai as demo ### replace rag_backend with your backend filename
 from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 from langchain.embeddings.bedrock import BedrockEmbeddings
@@ -52,13 +52,15 @@ if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     with st.spinner("📢Anytime someone tells me that I can't do something, I want to do it more - Taylor Swift"): ### Spinner message
-        response_content = demo.hr_rag_response(index=st.session_state.vector_index, question=prompt) ### replace with RAG Function from backend file
+        response_content, docs = demo.hr_rag_response(index=st.session_state.vector_index, question=prompt) ### replace with RAG Function from backend file
         #st.write(response_content)
         #response = f"Echo: {prompt}"
         # Display assistant response in chat message container
         with st.chat_message("assistant", avatar="🤖"):
             st.markdown(response_content)
+            st.markdown('**Reference URLs**')
+            st.markdown(",\n".join(list(set(docs))))
         # Add assistant response to chat history
-        st.session_state.messages.append({"role": "assistant", "content": response_content})
+        st.session_state.messages.append({"role": "assistant", "content": response_content + "\nReference URLs\n" + ",\n".join(list(set(docs)))})
 
     
