@@ -164,7 +164,7 @@ def hr_rag_response(index, question):
     #memory = ConversationBufferMemory(memory_key="chat_history", return_messages= True)
     #chain = ConversationalRetrievalChain.from_llm(llm=hr_llm(), retriever=index.as_retriever(search_kwargs={'k': 5}), memory=memory, verbose=True)
     
-    final_template = """ Answer the following in a form of passage and code (only if required) related to mindsdb based on this context:
+    final_template = """ Answer the following in a form of a detailed passage and code samples (only if required) related to mindsdb based on this context. The code samples need to be exhaustive and very self explanatory and should also include all setup steps to run the code like installations, API Keys, etc. :
     
     {context}
     
