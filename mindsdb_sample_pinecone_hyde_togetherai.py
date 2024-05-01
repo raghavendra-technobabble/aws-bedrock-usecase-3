@@ -126,7 +126,7 @@ def hr_llm_groq():
     llm = ChatGroq(
         temperature=0.4, 
         groq_api_key="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", 
-        model_name="llama3-8b-8192"
+        model_name="mixtral-8x7b-32768"
         )
     return llm
 
